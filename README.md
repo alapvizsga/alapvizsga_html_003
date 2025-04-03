@@ -10,3 +10,5 @@
 6. A „*tekintete azalatt*” szöveget, az első bekezdésben jelöld **dőltnek**. (*b*)
 7. A harmadik bekezdésben „*A szultán*” szövegeket jelöld **kiemeltnek**. (*em*)
 8. A HTML *forráskódjában* megjegyzésbe írd a **neved** és az **aktuális dátumot**.(*\<!-- Komment szövege -->*)
+
+*Sallai András [munkájának](https://szit.hu/doku.php?id=oktatas:web:html:html_feladatok) felhasználásával.*
