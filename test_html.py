@@ -1,4 +1,5 @@
 import pytest, bs4, cssutils
+from bs4 import Comment
 def get_source():
     with open("szoveg.txt", "r") as f: #Szövegfájl beolvasása
         return f.read() #Visszadobás egyben
@@ -58,15 +59,15 @@ def test_feladat_4():
         assert targets[index].text == sorok[index].strip(), f"Helytelen az {index + 1}. bekezdés szövege!"
 
 def test_feladat_5():
-    targets = html_soup.find_all("h2")
+    targets = html_soup.find_all("h2") #Összes h2 tag megkeresése
     
-    assert len(targets) == 3, "Nem megfelelő számú kettes fejezetcím van!"
+    assert len(targets) == 3, "Nem megfelelő számú kettes fejezetcím van!" #Ha nem 3db van, akkor hiba
 
-    szoveg = ["A szemrehányás", "A szentkönyv", "A leborulás"]
-    sorok = get_source()
+    szoveg = ["A szemrehányás", "A szentkönyv", "A leborulás"] #Beillesztendő szövegek
+    sorok = get_source().strip().split("\n")
 
-    for index in range(0, 3):
-        assert targets[index].text == szoveg[index].strip(), f"Helytelen az {index + 1}. bekezdés címe!"
+    for index in range(0, 3): #Szövegek ellenőrzése
+        assert targets[index].text == szoveg[index], f"Helytelen az {index + 1}. bekezdés címe!"
 
     # Első cím ellenőrzése
 
@@ -74,4 +75,47 @@ def test_feladat_5():
     assert targets[0].find_previous_sibling("h1").text == "Szoliman", "Helytelen az első cím elhelyezése!"
 
     assert isinstance(targets[0].find_next_sibling("p"), bs4.Tag), "Helytelen az első cím elhelyezése!"
-    assert targets[0].find_next_sibling("p").text == sorok[0].strip(), "Helytelen az első cím elhelyezése!"
+    assert targets[0].find_next_sibling("p").text == sorok[0], "Helytelen az első cím elhelyezése!"
+
+    # Második cím ellenőrzése
+
+    assert isinstance(targets[1].find_previous_sibling("p"), bs4.Tag), "Helytelen az első cím elhelyezése!"
+    assert targets[1].find_previous_sibling("p").text == sorok[0], "Helytelen az első cím elhelyezése!"
+
+    assert isinstance(targets[1].find_next_sibling("p"), bs4.Tag), "Helytelen az első cím elhelyezése!"
+    assert targets[1].find_next_sibling("p").text == sorok[1], "Helytelen az első cím elhelyezése!"
+
+    # Harmadik cím ellenőrzése
+
+    assert isinstance(targets[2].find_previous_sibling("p"), bs4.Tag), "Helytelen az első cím elhelyezése!"
+    assert targets[2].find_previous_sibling("p").text == sorok[1], "Helytelen az első cím elhelyezése!"
+
+    assert isinstance(targets[2].find_next_sibling("p"), bs4.Tag), "Helytelen az első cím elhelyezése!"
+    assert targets[2].find_next_sibling("p").text == sorok[2], "Helytelen az első cím elhelyezése!"
+
+def test_feladat_6():
+    target = html_soup.find("p") #Első bekezdés keresése
+    sorok = get_source().strip().split("\n")
+
+    assert isinstance(target, bs4.Tag), "Nem található bekezdés!"
+    assert target.text == sorok[0], "Nem helyes az első bekezdés szövege!"
+
+    assert isinstance(target.find("i"), bs4.Tag), "Nem található kiemelés az első bekezdésben!"
+    assert target.find("i").text == "tekintete azalatt", "Helytelen a kiemelt szöveg!"
+
+def test_feladat_7():
+    target = html_soup.find_all("p")
+    assert len(target) == 3, "Nem megfelelő a bekezdések száma!"
+    target = html_soup.find_all("p")[-1]
+    sorok = get_source().strip().split("\n")
+
+    assert isinstance(target, bs4.Tag), "Nem található bekezdés!"
+    assert target.text == sorok[-1], "Nem helyes az utolsó bekezdés szövege!"
+
+    assert isinstance(target.find("em"), bs4.Tag), "Nem található kiemelés az utolsó bekezdésben!"
+    assert target.find("em").text == "A szultán", "Helytelen a kiemelt szöveg!"
+
+def test_feladat_8():
+    target = html_soup.find(string=lambda text:isinstance(text, Comment))
+    assert isinstance(target, bs4.Comment), "Nem található megjegyzés a forráskódban!"
+    assert target == "A szultán egy története", "Nem megfelelő a megjegyzés szövege!"
