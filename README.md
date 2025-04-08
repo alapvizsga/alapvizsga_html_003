@@ -2,7 +2,7 @@
 1. Állítsd be az oldalt *magyar* **nyelvűre**. (*lang*)
 2. Állítsd be, hogy a **böngészőfülön** a „*Szoliman*” felirat jelenjen meg. (*title*)
 3. Hozz létre **egyes szintű fejezetcímet**, „*Szoliman*” tartalommal.
-4. Illeszd be a szöveget, és **tagold háromra soronként**. Ezeket jelöld **bekezdésnek**. ( *p* )
+4. A *szoveg.txt* fájlban található a forrás. Van benne három sor szöveg, ezeket külön-külön soronként illeszd be az oldal törzsébe. Jelöld őket **bekezdésnek**. ( *p* )
 5. A bekezdések elé helyezz be **kettes fejezetcímeket** a következő szövegekkel:
     - 1 bekezdés: *A szemrehányás*
     - 2 bekezdés: *A szentkönyv*
