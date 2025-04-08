@@ -119,3 +119,5 @@ def test_feladat_8():
     target = html_soup.find(string=lambda text:isinstance(text, Comment))
     assert isinstance(target, bs4.Comment), "Nem található megjegyzés a forráskódban!"
     assert target == "A szultán egy története", "Nem megfelelő a megjegyzés szövege!"
+
+pytest.main()
