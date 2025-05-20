@@ -1,4 +1,10 @@
 # HTML Szoliman feladat
+
+### A feladat elkezdése előtt futtasd le terminálban a
+    pip install pytest bs4 cssutils
+### parancsot.
+### A parancs lefuttatása nélkül nem fog működni a kiértékelés.
+
 1. Állítsd be az oldalt *magyar* **nyelvűre**. (*lang*)
 2. Állítsd be, hogy a **böngészőfülön** a „*Szoliman*” felirat jelenjen meg. (*title*)
 3. Hozz létre **egyes szintű fejezetcímet**, „*Szoliman*” tartalommal.
