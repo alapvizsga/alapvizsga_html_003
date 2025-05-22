@@ -56,7 +56,7 @@ def test_feladat_4():
     assert isinstance(targets[1].find_next_sibling("p"), bs4.Tag), "Helytelen a bekezdések elhelyezése!"
 
     for index in range(0, 3):
-        assert targets[index].text == sorok[index].strip(), f"Helytelen az {index + 1}. bekezdés szövege!"
+        assert targets[index].text.strip() == sorok[index].strip(), f"Helytelen az {index + 1}. bekezdés szövege!"
 
 def test_feladat_5():
     targets = html_soup.find_all("h2") #Összes h2 tag megkeresése
